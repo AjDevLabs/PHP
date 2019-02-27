@@ -1,4 +1,10 @@
-<?php  require_once("header.php"); ?>
+<?php 
+ session_start();
+ if(!isset($_SESSION["login"]))
+ {
+ 	header("Location:index.php");
+ }
+ require_once("header.php"); ?>
 <style type="text/css" media="screen">
 
 </style>
@@ -45,7 +51,7 @@
 								<ul class="dropdown-menu">
 									<li><a href="#">View Profile</a></li>
 									<li><a href="#">Change Password</a></li>
-									<li><a href="#">Logout</a></li>
+									<li><a href="logout.php">Logout</a></li>
 								</ul>
 							</li>
 						</ul>

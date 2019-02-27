@@ -1,4 +1,8 @@
 <?php 
+  session_start();
+  if(isset($_SESSION["login"])){
+      header("Location:dashboard.php");                            
+  }
   require_once "db.php";
   if(isset($_POST['submit'])){
       $username =  trim($_POST['username']);
@@ -9,6 +13,7 @@
       $res = $query->fetchAll();
       if(count($res)>=1)
       {
+          $_SESSION["login"]=1;
           // echo "You have sucessfully loggged in<br/>";
           header('Location:dashboard.php');
       }else{
