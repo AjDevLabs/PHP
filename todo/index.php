@@ -10,9 +10,10 @@
       $msg=null;
       $sql = "SELECT * FROM users WHERE username='{$username}' AND password='{$password}'";
       $query = $conn->query($sql);
-      $res = $query->fetchAll();
+      $res = $query->fetch();
       if(count($res)>=1)
       {
+          $_SESSION["uid"] = $res['id'];
           $_SESSION["login"]=1;
           // echo "You have sucessfully loggged in<br/>";
           header('Location:dashboard.php');

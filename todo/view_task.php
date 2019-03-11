@@ -1,4 +1,18 @@
-<?php  require_once("header.php"); ?>
+<?php  
+		session_start();
+		require_once("header.php"); 
+
+		require_once("db.php");
+		$id = $_SESSION['uid'];
+		$sql = "SELECT * FROM tasks WHERE user_id={$id}";
+		try{
+			$res = $conn->query($sql);
+		}catch(PDOException $e)
+		{
+
+		}
+
+?>
 <style type="text/css" media="screen">
 
 </style>
@@ -70,16 +84,25 @@
     			</tr>
     		</thead>
     		<tbody>
+    			
+    				<?php $sno =  1;
+
+    					while($row = $res->fetch())
+    					{
+    				 ?>
     			<tr>
-    				<td>1</td>
-    				<td>Create A website</td>
-    				<td>For medicana</td>
-    				<td>23/10/2019</td>
-    				<td><span class="badge" style="background-color:teal !important;">low</span></td>
-    				<td>20/02/2019</td>
+    				<td><?=$sno?></td>
+    				<td><?=$row['name']?></td>
+    				<td><?=$row['descp']?></td>
+    				<td><?=$row['expected_date']?></td>
+    				<td><span class="badge" style="background-color:teal !important;"><?=$row['priority']?></span></td>
+    				<td><?=$row['created_on']?></td>
     				<td><span class="label label-success">Active</span></td>
     				<td><button type="button" class="btn btn-info">Edit</button>&nbsp;<button type="button" class="btn btn-danger">Delete</button></td>
     			</tr>
+    			<?php 
+    				}
+    			 ?>
     		</tbody>
     	</table>
     </div>

@@ -8,7 +8,7 @@
     $email = trim($_POST['email']);
     $mobile = trim($_POST['mobile']);
     $name_error = null;
-    $validation_erro = flase;
+    $validation_erro = false;
     if($username==""){
       $name_error = "Invalid username";
       $validation_erro = true;
